@@ -1,11 +1,13 @@
-<ul>
-    @for (post of data; track post.id) {
-        <li>
-            <h3>{{post.title}}</h3>
-        </li>
-        <p></p>
-
-    }
-
-</ul>
+<div class="container">
+    <div>{{member.name}}</div>
+    <div>
+        <p>{{member.department}}</p>
+        <p>{{member.points}}</p>
+        <p>{{member.phone}}</p>
+    </div>
+      <a class="navbar-brand" href="/">Back</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
 

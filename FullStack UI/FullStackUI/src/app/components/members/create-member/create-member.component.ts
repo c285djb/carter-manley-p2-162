@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-member',
-  standalone: true,
-  imports: [CommonModule],
+  // standalone: true,
+  // imports: [CommonModule],
   templateUrl: './create-member.component.html',
   styleUrl: './create-member.component.css'
 })
@@ -16,12 +16,13 @@ export class CreateMemberComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private route: Router
     ) { }
 
   ngOnInit(): void {
   }
 
-  createPost() {
+  createMember() {
     this.member.date = new Date();
     this.http.post('http://localhost:7276/api/members', this.member).subscribe(
       response => { this.home() },
@@ -34,7 +35,7 @@ export class CreateMemberComponent implements OnInit {
   }
 
   home() {
-
+    this.route.navigate(["/"]);
   }
 
 }

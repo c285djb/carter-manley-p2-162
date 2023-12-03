@@ -1,30 +1,34 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { MatCardActions } from '@angular/material/card';
 
 @Component({
   selector: 'app-view-members',
-  standalone: true,
-  imports: [CommonModule],
+//   standalone: true,
+//   imports: [CommonModule
+// ],
   templateUrl: './view-members.component.html',
   styleUrl: './view-members.component.css'
 })
 export class ViewMembersComponent implements OnInit{
 
+  member: any = {}
 
-  httpClient = inject(HttpClient);
-  data: any[] = [];
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.fetchData();
+    this.getMember();
   }
 
-  fetchData() {
-
-    this.httpClient.get('http://jsonplaceholder.typicode.com/posts').subscribe((data: any) => {
-      console.log(data);
-      this.data = data;
+  getMember() {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.http.get('http://localhost:7276/api/members/').subscribe(member => {
+      this.member = member;
     }
     );
   }
+
+
 }
